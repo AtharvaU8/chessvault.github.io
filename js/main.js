@@ -618,7 +618,6 @@ const uploadtext = document.querySelector('#uploadtext')
 
 // Function to handle encryption
 async function encryptFile() {
-  makePiecesUndraggable();
   if (moveCount < minMoves){
     boardalert.style.display = "flex";
     boardtext.textContent = "Please Play minimum 4 moves";
