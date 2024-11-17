@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <title>Chess Vault</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="imag/trans-chessvault.png" type="image/x-icon" />
+        <meta name="description" content="Chess Vault provides encryption and decryption of any file using chess in a gamified way for free. It can lock and unlock any file having any extensions such as .txt, .docx, .pdf, .jpg etc.">
+
+        <!-- Bootstrap CSS -->
+        <!--<link rel="stylesheet" 
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+            crossorigin="anonymous">--!>
+          
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="css/main.css">
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap" rel="stylesheet">
+          
+        <!-- Google Icons (Material Design) -->
+        <link rel="stylesheet" 
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            crossorigin="anonymous">
+        
+        <!-- Font Awesome -->
+        <script src="https://kit.fontawesome.com/fd38fe2beb.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+        <!-- jQuery --> 
+        <script
+            src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous">
+        </script>
+
+        <!-- Chessboard JS -->
+        <link rel="stylesheet"
+            href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css"
+            integrity="sha384-q94+BZtLrkL1/ohfjR8c6L+A6qzNH9R2hBLwyoAfu3i/WCvQjzL2RQJ3uNHDISdU"
+            crossorigin="anonymous">
+        <script defer src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"
+            integrity="sha384-8Vi8VHwn3vjQ9eUHUxex3JSN/NFqUg3QbPyX8kWyb93+8AC/pPWTzj+nHtbC5bxD"
+            crossorigin="anonymous"></script>
+
+        <!-- Chess JS (slightly modified) -->
+        <script defer src="js/chess.js"></script>
+        </script>
+
+        <!-- Bootstrap JS --> 
+        <script defer
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" 
+            integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" 
+            crossorigin="anonymous">
+        </script>
+
+        <!-- Custom JS -->
+        <script defer src="js/main.js"></script>
+  </head>
+  <body>
+        <div class="head">
+            <img class="chessvault" src="/img/trans-chessvault.png" alt="chess" height="100px">
+            <h1 class="heading">Chess Vault: Chess based File Encryption</h1>
+            <p class="slogan">Lock and Unlock Your Files with chess moves on Chess Vault!</p>
+        </div>
+        <main>
+            <div class="home" id="home">
+                  
+                  <div class="choose">
+                    <button class="encryption" onclick="encryption()" id="encryption">Encryption</button>
+                    <button class="decryption" onclick="decryption()" id="decryption">Decryption</button>
+                  </div>
+                    
+                  <div class="main">
+                    
+                    <h3 class="enc-heading">Chess based File Encryption </h3>
+                      
+                    <label for="fileInput" class="uploadfile">
+                      <svg style="display: none;" id="fileicon" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-file-earmark" viewBox="0 0 16 16"><path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z"/>
+                      </svg>
+                      <svg id="uploadfileicon" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16"><path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707z"/><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+                      </svg>
+                      <span class="filename">Browse File</span>
+                      
+                    </label>
+                    <input type="file" id="fileInput"/>
+                    
+                    <div class="alert" id="uploadalert">
+                      <div class="flex-cont1">
+                        
+                        <svg id="alerticon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+                        </svg>
+                        <span id="uploadtext"></span>
+   
+                      </div>
+                      
+                      <div class="flex-cont2">
+                        <svg id="close" onclick="document.getElementById('uploadalert').style.display='none';" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                        </svg>
+                      </div>
+                      
+                    </div>
+                    
+                  </div>
+                        
+                  <div class="chess">
+                    
+                      <div class="copyhead">
+                      
+                        <h3 class="play">Play Chess to Encrypt Your File</h3>
+                        <button class="copy" id="copyMovesButton">
+                          
+                          <svg id="copyicon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z"/>
+                          </svg>
+                          <span id="copytext">Copy Moves</span>
+                          
+                          <svg id="copiedicon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
+                          </svg>
+                          <span id="copiedtext">Copied</span>
+                          
+                        </button>
+                        
+                      </div>
+                      
+                        <div class="board-cont">
+                          <div id="myBoard"></div>
+                        </div>  
+                        
+                        <div class="alert" id="boardalert">
+                          <div class="flex-cont3">
+                        
+                            <svg id="alerticon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+                            </svg>
+                            <span id="boardtext"></span>
+                          </div>
+                      
+                          <div class="flex-cont4">
+                            <svg id="close" onclick="document.getElementById('boardalert').style.display='none';" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                            </svg>
+                          </div>
+                        </div>
+                      
+                      <div class="post">
+                        
+                        <div class="row justify-content-center">
+                            <span id="position-count">0</span> &nbsp positions evaluated in &nbsp <span id="time">0</span>s.
+                        </div>
+                      
+                        <div class="row mb-3 justify-content-center">
+                            That's &nbsp <span id="positions-per-s">0</span> &nbsp positions / s.
+                        </div>
+                            
+                        <div class="select">
+                          
+                          <div class="form-group">
+                            <label for="search-depth">Search Depth (Black):</label>
+                            <select id="search-depth">
+                              <option value="3" selected>3</option>
+                            </select>
+                          </div>
+                                        
+                          <div class="form-group">
+                            <label for="search-depth-white">Search Depth (White):</label>
+                            <select id="search-depth-white">
+                              <option value="3" selected>3</option>
+                            </select>
+                          </div>
+                          
+                        </div>
+                        
+                      </div>
+                      
+                    <div class="suggest-crypt">
+                        
+                      
+                      <div class="suggest">
+                        <input type="checkbox" id="showHint" name="showHint" value="showHint">
+                        <label for="showHint">Show Suggested Moves</label>
+                      </div>
+                            
+                        
+                        <div class="action">
+                              <button class="action-btn" id="undoBtn">Undo</button>
+                              <button class="action-btn" id="redoBtn">Redo</button>
+                        </div>
+                        
+                        <div class="div-crypt">
+                          
+                          <button class="crypt" id="encrypt" onclick="encryptFile()">
+                            <svg id="lock" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1"/>
+                            </svg> Encrypt File
+                          </button>
+                          <button class="crypt" id="decrypt" onclick="decryptFile()">
+                            <svg id="unlock" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16"><path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2M3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1z"/>
+                            </svg> Decrypt File
+                          </button>
+                        </div>
+                      
+                    </div>
+                        
+                  </div>
+                  
+                  <div class="questions">
+                    
+                  </div>
+              
+            </div>
+        </main>
+        <footer id="footer">
+          <div class="row primary">
+            <div class="column about">
+              <h3 class="namehead">Chess Vault</h3>
+              <p>
+                Chess Vault provides encryption and decryption of any file using chess moves in a gamified way for free. It can lock and unlock any file having any extensions such as .txt, .docx, .pdf, .jpg etc. It provides mechanism to encrypt the file with your own style of playing chess. This ensures the utmost security and privacy of your file in an unique and innovative way.
+              </p>
+            </div>
+            <div class="column links">
+              <h3 class="quickhead">Quick Links</h3>
+              <ul>
+                <li>
+                  <a href="#home">Home</a>
+                </li>
+                <li>
+                  <a onclick="encryption()" href="#encryption">Encryption</a>
+                </li>
+                <li>
+                  <a onclick="decryption()" href="#decryption">Decryption</a>
+                </li>
+                <li>
+                  <a href="https://atharva-portfolio.netlify.app/">Portfolio Website</a>
+                </li>
+              </ul>
+            </div>
+            <div class="column subscribe">
+              <h3 class="followhead">Follow Us</h3>
+              <div class="social">
+                <a href="https://www.youtube.com/@justcompileit"><i id="youtube" class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.instagram.com/atharvaugale8/"><i id="instagram" class="fa-brands fa-instagram"></i></a>
+                <a href="https://github.com/AtharvaU8/"><i id="github" class="fa-brands fa-github"></i></a>
+                <a href="https://atharva-portfolio.netlify.app/"><i id="user" class="fa-brands fa-x-twitter"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="row copyright">
+            <p>Copyright &copy; 2024 Chess Vault | All Rights Reserved</p>
+            <a id="made" href="https://atharva-portfolio.netlify.app/">~ Made by Atharva</a>
+          </div>
+        </footer>
+        
+        
+  </body>
+</html>
