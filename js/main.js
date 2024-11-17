@@ -629,7 +629,6 @@ async function encryptFile() {
     uploadtext.textContent = "Select a file to encrypt!";
     return;
   }
-  document.getElementById('copyMovesButton').disabled = false;
   // Generate encryption key
   const keyBuffer = await generateKeyFromMoves(userMoves, botMoves);
   const key = await crypto.subtle.importKey("raw", keyBuffer, "AES-GCM", false, ["encrypt"]);
@@ -731,13 +730,6 @@ function copyGameNotation() {
 // Call this function whenever you want to copy the moves
 // Example: After game ends or on a button click
 document.getElementById("copyMovesButton").addEventListener("click", copyGameNotation);
-
-
-// Function to check move count and update UI accordingly
-
-// Function to make pieces undraggable
-
-
 
 let moveCount = 0;
 const minMoves = 4;
@@ -906,10 +898,10 @@ document.querySelector("#fileInput").onchange = function() {
 
         if (isEncrypted) {
           if (moveCount === maxMoves) {
-            makePiecesUndraggable();
+            
           }
           else{
-           encryption();
+           decryption();
            enableBoard();
           }
             
