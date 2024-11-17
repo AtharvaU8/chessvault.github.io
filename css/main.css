@@ -54,7 +54,7 @@ body{
   flex-flow: wrap;
   width: 100vw;
   height: 40vh;
-  background-image: url('/img/background/chess-bg.jpg');
+  background-image: url('/chessvault/img/background/chess-bg.jpg');
   background-size: cover;
   margin: 0 0 2rem 0;
   justify-content: center;
