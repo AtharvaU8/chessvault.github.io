@@ -668,7 +668,6 @@ async function decryptFile() {
   try {
     const decryptedData = await crypto.subtle.decrypt({ name: "AES-GCM", iv: new Uint8Array(iv) }, key, encryptedData);
     downloadFile(decryptedData, "chess-vault_" + fileInput.name.replace(".enc.txt", ""));
-    makePiecesUndraggable();
   } catch (error) {
     boardalert.style.display = "flex";
     boardtext.textContent = "Decryption Failed. Ensure the same opening was played.";
