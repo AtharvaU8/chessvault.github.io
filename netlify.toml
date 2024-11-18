@@ -1,20 +1,22 @@
-[[headers]]
-  for = "/**"
-  [headers.values]
-    Cache-Control = "no-cache, no-store, must-revalidate"
-    Content-Type = "application/octet-stream"
-
 [build]
-  command = "npm run build" # Or your build command
-  publish = "dist"          # Directory where built files are placed (e.g., dist, build, public)
+  command = "npm run build" # Command to build the project
+  publish = "dist"          # Directory with the output files (adjust if different)
+
+[context.production]
+  command = "npm run build"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  
+  force = true
+
 [[redirects]]
-from = "/download/*"
-to = "/download/:splat"
-status = 200
-force = true
+  from = "/download/*"
+  to = "/download/:splat"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
