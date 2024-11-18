@@ -629,6 +629,7 @@ async function encryptFile() {
     uploadtext.textContent = "Select a file to encrypt!";
     return;
   }
+  document.getElementById('copyMovesButton').disabled = false;
   // Generate encryption key
   const keyBuffer = await generateKeyFromMoves(userMoves, botMoves);
   const key = await crypto.subtle.importKey("raw", keyBuffer, "AES-GCM", false, ["encrypt"]);
@@ -674,18 +675,23 @@ async function decryptFile() {
 
 // Download the file
 function downloadFile(data, filename) {
-  const blob = new Blob([data]);
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
+  const blob = new Blob([fileData], { type: 'application/octet-stream' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
   a.href = url;
-  a.download = filename;
+  a.download = fileName
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  window.URL.revokeObjectURL(url); // Ensure URL is revoked to avoid reuse
   resetInput();
   resetBoard();
 }
+self.addEventListener('fetch', (event) => {
+    if (event.request.url.includes('/download')) {
+        event.respondWith(fetch(event.request));
+    }
+});
 
 
 function copyGameNotation() {
@@ -730,6 +736,13 @@ function copyGameNotation() {
 // Call this function whenever you want to copy the moves
 // Example: After game ends or on a button click
 document.getElementById("copyMovesButton").addEventListener("click", copyGameNotation);
+
+
+// Function to check move count and update UI accordingly
+
+// Function to make pieces undraggable
+
+
 
 let moveCount = 0;
 const minMoves = 4;
@@ -898,10 +911,10 @@ document.querySelector("#fileInput").onchange = function() {
 
         if (isEncrypted) {
           if (moveCount === maxMoves) {
-            
+            makePiecesUndraggable();
           }
           else{
-           decryption();
+           encryption();
            enableBoard();
           }
             
@@ -921,3 +934,4 @@ document.querySelector("#fileInput").onchange = function() {
 // Setup buttons to call encryption and decryption
 document.getElementById("encrypt").addEventListener("click", encryptFile);
 document.getElementById("decrypt").addEventListener("click", decryptFile);
+     
