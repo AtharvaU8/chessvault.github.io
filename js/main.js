@@ -671,7 +671,8 @@ function downloadFile(data, filename) {
   isDownloading = true;
 
   const blob = new Blob([data], { type: "application/octet-stream" });
-  saveAs(blob, filename);
+  const uniqueFilename = filename + "?t=" + new Date().getTime(); // Ensures uniqueness
+  saveAs(blob, uniqueFilename);
 
   // Reset the flag after a short delay
   setTimeout(() => {
@@ -680,6 +681,11 @@ function downloadFile(data, filename) {
   
 }
 
+fetch('/config.yaml')
+  .then(response => response.text())
+  .then(data => {
+    console.log(data);
+  });
 
 
 
