@@ -675,23 +675,35 @@ async function decryptFile() {
 
 // Download the file
 function downloadFile(data, filename) {
-  const blob = new Blob([data], { type: 'application/octet-stream' });
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  window.URL.revokeObjectURL(url); // Ensure URL is revoked to avoid reuse
+  if (!data) {
+    console.error("Data is undefined or null. Check encryption/decryption output.");
+    return;
+  }
+  if (!filename || typeof filename !== "string") {
+    console.error("Invalid filename:", filename);
+    return;
+  }
+
+  try {
+    const blob = new Blob([new Uint8Array(data)], { type: 'application/octet-stream' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    window.URL.revokeObjectURL(url); // Clean up URL
+  } catch (error) {
+    console.error("Error during file download:", error);
+  }
   resetInput();
   resetBoard();
 }
-self.addEventListener('fetch', (event) => {
-    if (event.request.url.includes('/download')) {
-        event.respondWith(fetch(event.request));
-    }
-});
+
+
 
 
 function copyGameNotation() {
@@ -766,13 +778,16 @@ function resetBoard() {
   document.getElementById("decrypt").disabled = true;
   document.getElementById('copyMovesButton').disabled = true;
   document.getElementById('boardalert').style.display='none';
+  makePiecesUndraggable();
 }
 function resetInput() {
-  document.getElementById("fileInput").value = "";
-  document.querySelector(".filename").textContent = "Browse File";
-  document.querySelector("#fileicon").style.display = "none";
-  document.querySelector("#uploadfileicon").style.display = "block";
-  
+  const fileInput = document.getElementById("fileInput");
+  if (fileInput) {
+    fileInput.value = ""; // Clears the file input
+    document.querySelector(".filename").textContent = "Browse File";
+    document.querySelector("#fileicon").style.display = "none";
+    document.querySelector("#uploadfileicon").style.display = "block";
+  }
 }
 
 function onMove() {
