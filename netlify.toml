@@ -1,22 +1,16 @@
 [build]
-  command = "npm run build" # Command to build the project
-  publish = "dist"          # Directory with the output files (adjust if different)
-
-[context.production]
-  command = "npm run build"
+  # Since the website is in the root, we don't need a special publish directory.
+  command = "" # No build command needed for plain HTML/JS/CSS
+  publish = "." # Root directory where index.html is located
 
 [[redirects]]
+  # Redirect all paths to index.html for single-page app behavior (optional).
   from = "/*"
   to = "/index.html"
   status = 200
-  force = true
-
-[[redirects]]
-  from = "/download/*"
-  to = "/download/:splat"
-  status = 200
 
 [[headers]]
+  # Prevent browser caching issues for downloads.
   for = "/*"
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"

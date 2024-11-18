@@ -1,0 +1,9 @@
+{
+  "name": "chessvault",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "echo 'No development server required'",
+    "build": "echo 'No build step required'"
+  }
+}
+
