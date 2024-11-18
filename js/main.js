@@ -634,8 +634,7 @@ async function encryptFile() {
   combined.set(iv);
   combined.set(new Uint8Array(encryptedData), iv.length);
 
-  downloadFile(combined, fileInput.name + ".enc.txt");  
-  
+  downloadFile(combined, fileInput.name + ".enc.txt");   
   resetAll();
   
 }
@@ -655,7 +654,6 @@ async function decryptFile() {
   try {
     const decryptedData = await crypto.subtle.decrypt({ name: "AES-GCM", iv: new Uint8Array(iv) }, key, encryptedData);
     downloadFile(decryptedData, "chess-vault_" + fileInput.name.replace(".enc.txt", ""));
-    
     resetAll();
   } catch (error) {
     boardalert.style.display = "flex";
@@ -664,20 +662,11 @@ async function decryptFile() {
 }
 
 // Download the file
-let isDownloading = false;
 function downloadFile(data, filename) {
-
-  if (isDownloading) return; // Prevent duplicate downloads
-  isDownloading = true;
-
+  
   const blob = new Blob([data], { type: "application/octet-stream" });
   const uniqueFilename = filename + "?t=" + new Date().getTime(); // Ensures uniqueness
   saveAs(blob, uniqueFilename);
-
-  // Reset the flag after a short delay
-  setTimeout(() => {
-    isDownloading = false;
-  }, 1000);
   
 }
 
@@ -756,7 +745,6 @@ function resetAll() {
   $board.find('.' + squareClass).removeClass('highlight-hint');
   board.position(game.fen());
   globalSum = 0;
-  board.draggable = false;
   moveCount = 0;
   userMoves = [];
   botMoves = [];
@@ -782,37 +770,6 @@ function resetAll() {
   }
   makePiecesUndraggable();
 }
-
-/*
-function resetBoard() {
-  game.reset();
-  $board.find('.' + squareClass).removeClass('highlight-white');
-  $board.find('.' + squareClass).removeClass('highlight-black');
-  $board.find('.' + squareClass).removeClass('highlight-hint');
-  board.position(game.fen());
-  globalSum = 0;
-  moveCount = 0;
-  userMoves = [];
-  botMoves = [];
-  document.getElementById("encrypt").disabled = true;
-  document.getElementById("decrypt").disabled = true;
-  document.getElementById('copyMovesButton').disabled = true;
-  document.getElementById('boardalert').style.display='none';
-  makePiecesUndraggable();
-  setTimeout(() => {
-  location.reload();
-}, 3000);
-}
-function resetInput() {
-  const fileInput = document.getElementById("fileInput");
-  if (fileInput) {
-    fileInput.value = ""; // Clears the file input
-    document.querySelector(".filename").textContent = "Browse File";
-    document.querySelector("#fileicon").style.display = "none";
-    document.querySelector("#uploadfileicon").style.display = "block";
-  }
-}
-*/
 
 function onMove() {
     moveCount++;
@@ -849,7 +806,6 @@ function enableBoard() {
   footer.style.display = "none";
   homeDiv.style.marginBottom = "0";
   
-  board.destroy();
   board = Chessboard('myBoard', {
   position: board.fen(), // retain the current position
   draggable: true, // enable dragging
@@ -896,7 +852,6 @@ function encryption() {
   if (file) {
     if (file.name.endsWith('.enc.txt')) {
       decryption();
-      enableBoard();
     } else {
       if (moveCount === maxMoves) {
         makePiecesUndraggable();
@@ -934,7 +889,6 @@ function decryption() {
     } 
     else {
       encryption();
-      enableBoard();
     }
   }
 }
@@ -953,8 +907,7 @@ document.querySelector("#fileInput").onchange = function() {
             makePiecesUndraggable();
           }
           else{
-           encryption();
-           enableBoard();
+           decryption();
           }
             
         } 
@@ -963,13 +916,9 @@ document.querySelector("#fileInput").onchange = function() {
             makePiecesUndraggable();
           }
           else {
-            enableBoard();
             encryption(); 
           }
         }
     }
 };
 
-// Setup buttons to call encryption and decryption
-document.getElementById("encrypt").addEventListener("click", encryptFile);
-document.getElementById("decrypt").addEventListener("click", decryptFile);
