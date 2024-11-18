@@ -675,7 +675,7 @@ async function decryptFile() {
 
 // Download the file
 function downloadFile(data, filename) {
-  const blob = new Blob([fileData], { type: 'application/octet-stream' });
+  const blob = new Blob([data], { type: 'application/octet-stream' });
   const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
