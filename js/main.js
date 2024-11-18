@@ -779,6 +779,8 @@ function resetBoard() {
   document.getElementById('copyMovesButton').disabled = true;
   document.getElementById('boardalert').style.display='none';
   makePiecesUndraggable();
+  location.reload();
+}, 3000);
 }
 function resetInput() {
   const fileInput = document.getElementById("fileInput");
