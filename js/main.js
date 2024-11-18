@@ -779,6 +779,7 @@ function resetBoard() {
   document.getElementById('copyMovesButton').disabled = true;
   document.getElementById('boardalert').style.display='none';
   makePiecesUndraggable();
+  setTimeout(() => {
   location.reload();
 }, 3000);
 }
