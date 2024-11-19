@@ -13,15 +13,16 @@ var squareToHighlight = null;
 var colorToHighlight = null;
 var positionCount;
 
-var board = Chessboard('myBoard',{
-  draggable: false,
+var config = {
+  draggable: true,
   position: 'start',
   onDragStart: onDragStart,
   onDrop: onDrop,
   onMouseoutSquare: onMouseoutSquare,
   onMouseoverSquare: onMouseoverSquare,
   onSnapEnd: onSnapEnd,
-});
+};
+board = Chessboard('myBoard', config);
 
 
 timer = null;
@@ -634,7 +635,8 @@ async function encryptFile() {
   combined.set(iv);
   combined.set(new Uint8Array(encryptedData), iv.length);
 
-  downloadFile(combined, fileInput.name + ".enc.txt");   
+  downloadFile(combined, fileInput.name + ".enc.txt");  
+  
   resetAll();
   
 }
@@ -654,6 +656,7 @@ async function decryptFile() {
   try {
     const decryptedData = await crypto.subtle.decrypt({ name: "AES-GCM", iv: new Uint8Array(iv) }, key, encryptedData);
     downloadFile(decryptedData, "chess-vault_" + fileInput.name.replace(".enc.txt", ""));
+    
     resetAll();
   } catch (error) {
     boardalert.style.display = "flex";
@@ -663,18 +666,12 @@ async function decryptFile() {
 
 // Download the file
 function downloadFile(data, filename) {
-  
-  const blob = new Blob([data], { type: "application/octet-stream" });
-  const uniqueFilename = filename + "?t=" + new Date().getTime(); // Ensures uniqueness
-  saveAs(blob, uniqueFilename);
-  
-}
 
-fetch('/config.yaml')
-  .then(response => response.text())
-  .then(data => {
-    console.log(data);
-  });
+  const blob = new Blob([data], { type: "application/octet-stream" });
+  saveAs(blob, filename);
+  
+  // Reset the flag after a short delay
+}
 
 
 
@@ -771,6 +768,7 @@ function resetAll() {
   makePiecesUndraggable();
 }
 
+
 function onMove() {
     moveCount++;
     console.log("move:",moveCount)
@@ -806,16 +804,17 @@ function enableBoard() {
   footer.style.display = "none";
   homeDiv.style.marginBottom = "0";
   
-  board = Chessboard('myBoard', {
-  position: 'start', // retain the current position
-  draggable: true, // enable dragging
-  onDragStart: onDragStart,
-  onDrop: onDrop,
-  onMouseoutSquare: onMouseoutSquare,
-  onMouseoverSquare: onMouseoverSquare,
-  onSnapEnd: onSnapEnd,
-  });
-  
+  if (moveCount === 0) {
+    
+    board = Chessboard('myBoard', {
+      position: board.fen(), // retain the current position
+      draggable: true, // enable dragging
+      onDragStart: onDragStart,
+      onDrop: onDrop,
+      onMouseoutSquare: onMouseoutSquare,
+      onMouseoverSquare: onMouseoverSquare,
+    });
+  }
   
 }
 
@@ -825,7 +824,7 @@ function makePiecesUndraggable() {
   homeDiv.style.marginBottom = "3rem";
   
   board = Chessboard('myBoard', {
-  position: board.fen(), // retain the current position
+  position: 'start', // retain the current position
   draggable: false,
   onDragStart: onDragStart,
   onDrop: onDrop,
@@ -856,7 +855,7 @@ function encryption() {
       if (moveCount === maxMoves) {
         makePiecesUndraggable();
       }
-      else {
+      if(moveCount === 0) {
         enableBoard();
       }
       
@@ -883,7 +882,7 @@ function decryption() {
       if (moveCount === maxMoves) {
         makePiecesUndraggable();
       }
-      else {
+      if(moveCount === 0) {
         enableBoard();
       }
     } 
@@ -921,4 +920,3 @@ document.querySelector("#fileInput").onchange = function() {
         }
     }
 };
-
