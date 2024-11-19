@@ -807,7 +807,7 @@ function enableBoard() {
   homeDiv.style.marginBottom = "0";
   
   board = Chessboard('myBoard', {
-  position: board.fen(), // retain the current position
+  position: 'start', // retain the current position
   draggable: true, // enable dragging
   onDragStart: onDragStart,
   onDrop: onDrop,
