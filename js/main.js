@@ -680,6 +680,8 @@ function downloadFile(data, filename) {
         document.body.removeChild(a);
         URL.revokeObjectURL(url); // Revoke the Blob URL after use
         console.log("File downloaded successfully:", filename);
+      	boardalert.style.display = "block";
+        boardtext.textContent = "If the file is not downloaded, reload and try again.";
     } catch (error) {
         console.error("Download error:", error);
         alert("Download failed. Please try again.");
