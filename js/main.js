@@ -664,13 +664,26 @@ async function decryptFile() {
   }
 }
 
-// Download the file
 function downloadFile(data, filename) {
+    try {
+        const blob = new Blob([data], { type: "application/octet-stream" });
+        const url = URL.createObjectURL(blob);
 
-  const blob = new Blob([data], { type: "application/octet-stream" });
-  saveAs(blob, filename);
-  
-  // Reset the flag after a short delay
+        // Trigger download
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+
+        // Clean up
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url); // Revoke the Blob URL after use
+        console.log("File downloaded successfully:", filename);
+    } catch (error) {
+        console.error("Download error:", error);
+        alert("Download failed. Please try again.");
+    }
 }
 
 
@@ -807,13 +820,14 @@ function enableBoard() {
   if (moveCount === 0) {
     
     board = Chessboard('myBoard', {
-      position: board.fen(), // retain the current position
+      position: 'start', // retain the current position
       draggable: true, // enable dragging
       onDragStart: onDragStart,
       onDrop: onDrop,
       onMouseoutSquare: onMouseoutSquare,
       onMouseoverSquare: onMouseoverSquare,
     });
+    console.log("board enabled")
   }
   
 }
@@ -824,7 +838,7 @@ function makePiecesUndraggable() {
   homeDiv.style.marginBottom = "3rem";
   
   board = Chessboard('myBoard', {
-  position: 'start', // retain the current position
+  position: board.fen(), // retain the current position
   draggable: false,
   onDragStart: onDragStart,
   onDrop: onDrop,
@@ -832,6 +846,7 @@ function makePiecesUndraggable() {
   onMouseoverSquare: onMouseoverSquare,
   onSnapEnd: onSnapEnd,
   });
+  console.log('board disabled')
 }
 
 
@@ -847,7 +862,7 @@ function encryption() {
   
   const fileInput = document.getElementById('fileInput');
   const file = fileInput.files[0];
-
+  console.log('encryption');
   if (file) {
     if (file.name.endsWith('.enc.txt')) {
       decryption();
@@ -874,6 +889,7 @@ function decryption() {
   document.querySelector(".decryption").style.background = '#121212';
   document.getElementById('copyMovesButton').style.display = 'none';
   
+  console.log('decryption')
   const fileInput = document.getElementById('fileInput');
   const file = fileInput.files[0];
 
@@ -895,6 +911,7 @@ function decryption() {
 // Setup file input event
 document.querySelector("#fileInput").onchange = function() {
     if (this.files.length > 0) {
+      console.log('filequery')
         document.querySelector(".filename").textContent = this.files[0].name;
         document.querySelector("#fileicon").style.display = "block";
         document.querySelector("#uploadfileicon").style.display = "none";
