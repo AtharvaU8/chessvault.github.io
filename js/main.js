@@ -14,7 +14,7 @@ var colorToHighlight = null;
 var positionCount;
 
 var config = {
-  draggable: true,
+  draggable: false,
   position: 'start',
   onDragStart: onDragStart,
   onDrop: onDrop,
