@@ -681,7 +681,7 @@ function downloadFile(data, filename) {
         URL.revokeObjectURL(url); // Revoke the Blob URL after use
         console.log("File downloaded successfully:", filename);
       	boardalert.style.display = "block";
-        boardtext.textContent = "If the file is not downloaded, reload and try again.";
+        boardtext.textContent = "If the file is not downloaded, refresh and try again.";
     } catch (error) {
         console.error("Download error:", error);
         alert("Download failed. Please try again.");
@@ -762,8 +762,6 @@ function resetAll() {
   botMoves = [];
 
   // Reset UI elements
-  boardalert.style.display = "none";
-  boardtext.textContent = "";
   uploadalert.style.display = "none";
   uploadtext.textContent = "";
 
