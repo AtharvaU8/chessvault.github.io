@@ -324,7 +324,6 @@ input[type="file"] {
 
 
 footer {
-  pointer-events: none;
   background-color: #2a2a2a;
   color: #ffffff;
   font-size: 16px;
