@@ -688,7 +688,14 @@ function downloadFile(data, filename) {
     }
 }
 
-
+try {
+    const response = await fetch("/path/to/resource");
+    if (!response.ok) {
+        throw new Error("Network response was not ok");
+    }
+} catch (error) {
+    console.error("Error fetching resource:", error);
+}
 
 function copyGameNotation() {
     // Get all moves in Standard Algebraic Notation (SAN)
