@@ -219,7 +219,6 @@ input[type="file"] {
   padding: 3px 5px 3px 5px;
   margin: 5px 0 5px 0;
   justify-content: space-between;
-  align-items: center;
 }
 #alerticon{
   margin-right: 10px;
