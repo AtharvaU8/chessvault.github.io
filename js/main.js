@@ -635,7 +635,7 @@ async function encryptFile() {
   combined.set(iv);
   combined.set(new Uint8Array(encryptedData), iv.length);
 
-  downloadFile(combined, fileInput.name + ".enc.txt");  
+  downloadFile(combined, "castlefile_" + fileInput.name + ".enc.txt");  
   
   resetAll();
   
@@ -655,7 +655,7 @@ async function decryptFile() {
 
   try {
     const decryptedData = await crypto.subtle.decrypt({ name: "AES-GCM", iv: new Uint8Array(iv) }, key, encryptedData);
-    downloadFile(decryptedData, "chess-vault_" + fileInput.name.replace(".enc.txt", ""));
+    downloadFile(decryptedData, fileInput.name.replace(".enc.txt", ""));
     
     resetAll();
   } catch (error) {
