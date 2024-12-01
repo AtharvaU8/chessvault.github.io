@@ -3,7 +3,7 @@ Castle File provides encryption and decryption of any file using chess in a gami
 
 ## Usage
 
-![how-to-use-gif](https://jmp.sh/SnIf9QyG)
+![how-to-use-gif](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTNiZmgyMDlpMW94MzBkOGIxNXQ3ajB0dndnaXUyMzJ1eGt5dDJnaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GLHzWE2rWQUugtxMl5/giphy.gif)
 
 <br>
 
