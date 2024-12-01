@@ -1,5 +1,13 @@
-## 🔒♟️Castle File
-Castle File provides encryption and decryption of any file using chess in a gamified way. It can lock and unlock any file having any extensions such as .txt, .docx, .pdf, .jpg etc. It provides mechanism to encrypt the file with your own style of playing chess. This ensures the utmost security and privacy of your file in an unique and innovative way.
+<p align="center">
+  <a href="#" rel="noopener">
+ <a href="https://ibb.co/V3zLJZ8"><img src="https://i.ibb.co/PtPrFn8/In-Shot-20241202-025141849.png" alt="In-Shot-20241202-025141849" border="0" width="150"></a>
+</p>
+
+<a href="https://castlefile.xyz" style="color:#000"><h3 align="center">castlefile.xyz</h3></a>
+
+---
+
+[Castle File](https://castlefile.xyz) provides encryption and decryption of any file using chess in a gamified way. It can lock and unlock any file having any extensions such as .txt, .docx, .pdf, .jpg etc. It provides mechanism to encrypt the file with your own style of playing chess. This ensures the utmost security and privacy of your file in an unique and innovative way.
 
 ## Usage
 
