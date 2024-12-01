@@ -1,9 +1,9 @@
 ## 🔒♟️Castle File
 Castle File provides encryption and decryption of any file using chess in a gamified way. It can lock and unlock any file having any extensions such as .txt, .docx, .pdf, .jpg etc. It provides mechanism to encrypt the file with your own style of playing chess. This ensures the utmost security and privacy of your file in an unique and innovative way.
 
-# F.A.Q
+## F.A.Q
 
-# Q.Why should you use Castle Fie for file encryption?
+### Q.Why should you use Castle Fie for file encryption?
 
 1. Human Element and Unpredictability
 	- The sequence of moves becomes a part of the encryption key.
@@ -23,7 +23,7 @@ Castle File provides encryption and decryption of any file using chess in a gami
 
 In summary, Castle File: chess-based file encryption stands out as an innovative, interactive, and user-customizable approach to securing data, where each encryption session is as unique as the game that produces it.
 
-# Q.How do files get encrypted via chess?
+### Q.How do files get encrypted via chess?
 
 The encryption relies on a combination of cryptographic methods and the unique game mechanics of chess. Here’s a deep dive into how the files get encrypted:
 
@@ -37,13 +37,13 @@ The encryption relies on a combination of cryptographic methods and the unique g
 	- Key Generation: Concatenate moves into a string e2e4g8f6d2d4..., hash it with SHA-256 to produce a 256-bit key.
 	- AES Encryption: Encrypt the file using AES-256 with CBC mode, applying the generated key to scramble the file data.
 
-# Q.Is the Key Safe and Secure? 
+### Q.Is the Key Safe and Secure? 
 
 - The encryption key depends on the sequence of moves, which makes it unique and hard to replicate.
 - Hashing for Consistency: Using a hash function like SHA-256 ensures that even a small change in the move sequence will produce a drastically different key.
 - AES Security: AES is a robust encryption standard that has stood up to extensive cryptographic analysis, making it highly reliable for protecting sensitive data.
 
-# Q.Does the Website Store the Encryption Key? 
+### Q.Does the Website Store the Encryption Key? 
 
 - The website does not store the key or move sequence.
 - This website is completely client side
