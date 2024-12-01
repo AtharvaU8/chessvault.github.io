@@ -1,7 +1,7 @@
 ## 🔒♟️Castle File
 Castle File provides encryption and decryption of any file using chess in a gamified way. It can lock and unlock any file having any extensions such as .txt, .docx, .pdf, .jpg etc. It provides mechanism to encrypt the file with your own style of playing chess. This ensures the utmost security and privacy of your file in an unique and innovative way.
 
-## F.A.Q
+# F.A.Q
 
 # Q.Why should you use Castle Fie for file encryption?
 
@@ -19,7 +19,7 @@ Castle File provides encryption and decryption of any file using chess in a gami
 
 4. Educational and Interactive
 	- It can serve as an educational tool to help users learn about encryption and chess concepts in a gamified way. 
-	-It can also engage users, making security practices more interactive.
+	- It can also engage users, making security practices more interactive.
 
 In summary, Castle File: chess-based file encryption stands out as an innovative, interactive, and user-customizable approach to securing data, where each encryption session is as unique as the game that produces it.
 
