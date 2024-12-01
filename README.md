@@ -48,14 +48,14 @@ The encryption relies on a combination of cryptographic methods and the unique g
 
 2. Example Process
 	- User Move Sequence: e2e4, g8f6, d2d4, ...
-	- Key Generation: Concatenate moves into a string e2e4g8f6d2d4..., hash it with SHA-256 to produce a 256-bit key.
-	- AES Encryption: Encrypt the file using AES-256 with CBC mode, applying the generated key to scramble the file data.
+	- Concatenate moves into a string e2e4g8f6d2d4..., hash it with SHA-256 to produce a 256-bit key.
+	- Encrypt the file using AES-256 with CBC mode, applying the generated key to scramble the file data.
 
 ### Q.Is the Key Safe and Secure? 
 
 - The encryption key depends on the sequence of moves, which makes it unique and hard to replicate.
-- Hashing for Consistency: Using a hash function like SHA-256 ensures that even a small change in the move sequence will produce a drastically different key.
-- AES Security: AES is a robust encryption standard that has stood up to extensive cryptographic analysis, making it highly reliable for protecting sensitive data.
+- We Use a hash function SHA-256 it ensures that even a small change in the move sequence will produce a drastically different key.
+- AES is a robust encryption standard that has stood up to extensive cryptographic analysis, making it highly reliable for protecting sensitive data.
 
 ### Q.Does the Website Store the Encryption Key? 
 
