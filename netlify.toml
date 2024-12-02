@@ -1,5 +1,0 @@
-[[headers]]
-for = "/*"
-[headers.values]
-Basic-Auth = "username:password"
-X-Robots-Tag = "noindex"
