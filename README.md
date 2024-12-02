@@ -54,4 +54,4 @@ The encryption relies on a combination of cryptographic methods and the unique g
 
 ### Social 
 
-[Instagram](https://www.instagram.com/atharvaugale8/)
+- [Instagram](https://www.instagram.com/atharvaugale8/)
