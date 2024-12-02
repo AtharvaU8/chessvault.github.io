@@ -51,3 +51,7 @@ The encryption relies on a combination of cryptographic methods and the unique g
 - The website does not store the key or move sequence.
 - This website is completely client side
 - If user forget their exact sequence of moves, they lose the ability to decrypt.
+
+### Social 
+
+[Instagram](https://www.instagram.com/atharvaugale8/)
