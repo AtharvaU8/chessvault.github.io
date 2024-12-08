@@ -499,10 +499,16 @@ ul li a:hover {
     font-size: 1rem;
   }
 
-  footer {
-    font-size: 1rem;
+	footer .social{
+    display: flex;
+    flex-wrap: wrap;
   }
-
+  
+  footer .about p{
+    word-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 
 @media (max-width: 480px) {
