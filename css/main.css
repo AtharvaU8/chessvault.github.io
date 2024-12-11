@@ -375,6 +375,10 @@ ul li a {
 ul li a:hover {
   color: #2a8ded;
 }
+.about{
+  display:flex;
+  flex-wrap: wrap;
+}
 .about p {
   text-align: justify;
   line-height: 1.5;
@@ -399,6 +403,7 @@ ul li a:hover {
   color: white;
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
   font-size: 2.4em;
   flex-direction: row;
 }
