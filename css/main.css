@@ -2,18 +2,168 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-html {
-  scroll-behavior: smooth;
+  text-decoration: none;
 }
 body{
   font-family: "Quicksand", serif;
   font-optical-sizing: auto;
-  font-weight: 300;
+  overflow-x: none;
   font-style: normal;
   background: #101110;
   color:white;
 }
+.navbar{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    z-index: 999;
+    transition: all 0.3s ease;
+    top: 0;
+    height: 75px;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#000), color-stop(59%, rgba(0, 0, 0, 0.8)), to(transparent));
+    background-image: linear-gradient(180deg, #000, rgba(0, 0, 0, 0.9) 80%, transparent);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FCD43E", endColorstr="#336C9C", GradientType=1 );
+}
+.navbar .max-width{
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar .logo a{
+    color: #fff;
+    margin-top: 3px;
+    margin-left: 3px;
+    font-size: 30px;
+    font-weight: 600;
+}
+.navbar .logo img{
+  margin-bottom: 5px;
+  width: 50px;
+}
+.navbar .logo{
+    display: flex;
+    align-items: center;
+    margin: 0 0 0 5px;
+}
+.menu{
+  margin-right: 15px;
+}
+
+.navbar .menu li{
+  list-style: none;
+  display: inline-block;
+}
+.navbar .menu li a{
+    display: block;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 20px;
+    transition: color 0.3s ease;
+}
+.navbar .menu li a:hover{
+    color: hsla(47, 97%, 62%, 1);
+    text-decoration: none;
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FCEA74", endColorstr="#FCD43E", GradientType=1 );
+}
+.navbar.sticky .menu li a:hover{
+    color: #fff;
+}
+.menu-btn{
+    color: #fff;
+    font-size: 23px;
+    cursor: pointer;
+    display: none;
+}
+.inaclogo{
+  display: none;
+}
+
+@media (max-width: 947px){
+    .navbar .max-width{
+      width: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .aclogo a{
+      color: white;
+      font-size: 30px;
+      font-weight: 600;
+    }
+    .aclogo img{
+      margin-top: 0;
+      width: 50px;
+    }
+    .aclogo{
+      border-bottom: 1px solid white;
+      position: absolute;
+      padding-bottom: 5px;
+      width: 100%;
+      top: 1%;
+      display: flex;
+      justify-content: center;
+      align-items: end;
+      color: white;
+      font-size: 35px;
+      font-weight: 500;
+    }
+    #menu-btn{
+      position: absolute;
+      left: 5%;
+      display: flex;
+      align-items: center;
+      z-index: 999;
+    }
+    .menu-btn{
+        display: block;
+        z-index: 999;
+    }
+    .menu-btn i.active:before{
+        content: "\f00d";
+    }
+    .navbar .menu .menu-name{
+      font-weight: 600;
+    }
+    .navbar .menu{
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        left: -100%;
+        top: 0;
+        background: #111;
+        text-align: center;
+        padding-top: 80px;
+        transition: all 0.3s ease;
+    }
+    .navbar .menu.active{
+        left: 0;
+    }
+    .navbar .menu li{
+        display: block;
+    }
+    .navbar .menu li a{
+        display: inline-block;
+        margin: 20px 0;
+        font-size: 25px;
+    }
+}
+@media (max-width: 690px) {
+    .navbar .logo a, .aclogo a{
+    font-size: 30px;
+    }
+    .navbar .logo{
+      
+    }
+    .max-width{
+        padding: 0 23px;
+    }
+}
+
+
+
 #myBoard {
   margin: 0.5rem 0 0 0;
   max-width: 100%;
@@ -358,28 +508,24 @@ footer * {
   font-size: 1.6em;
   white-space: nowrap;
 }
-ul {
+footer ul {
   list-style: none;
   display: flex;
   flex-direction: column;
   padding: 0;
   margin: 0;
 }
-li:not(:first-child) {
+footer li:not(:first-child) {
   margin-top: 0.8em;
 }
-ul li a {
+footer ul li a {
   color: #ffffff;
   text-decoration: none;
 }
-ul li a:hover {
+footer ul li a:hover {
   color: #2a8ded;
 }
-.about{
-  display:flex;
-  flex-wrap: wrap;
-}
-.about p {
+footer .about p {
   text-align: justify;
   line-height: 1.5;
   margin: 0;
@@ -403,7 +549,6 @@ ul li a:hover {
   color: white;
   display: flex;
   justify-content: flex-start;
-  flex-wrap: wrap;
   font-size: 2.4em;
   flex-direction: row;
 }
@@ -503,8 +648,7 @@ ul li a:hover {
     height: 10vh;
     font-size: 1rem;
   }
-
-	footer .social{
+  footer .social{
     display: flex;
     flex-wrap: wrap;
   }
@@ -514,6 +658,9 @@ ul li a:hover {
     display: flex;
     flex-wrap: wrap;
   }
+  
+  
+
 }
 
 @media (max-width: 480px) {
